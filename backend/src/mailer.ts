@@ -35,11 +35,22 @@ async function deliver(to: string, subject: string, html: string, text: string):
     fs.writeFileSync(path.join(m.logDir!, `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.json`), JSON.stringify({ to, subject, html, text }));
     return;
   }
+  if (m.driver === 'resend' || m.driver === 'brevo') return deliverApi(m.driver, m.apiKey, { name: m.fromName, email: m.from }, m.replyTo, to, subject, html, text);
   // Never wait more than 25 seconds for a mail server (a missing or blocked server must not hang anything).
   let timer: NodeJS.Timeout | undefined;
   const timeout = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('Mail server did not respond within 25 seconds')), 25_000); });
   try { await Promise.race([getTransport()!.sendMail({ from: { name: m.fromName, address: m.from }, replyTo: m.replyTo ?? m.from, to, subject, html, text, headers: { 'Auto-Submitted': 'auto-generated' } }), timeout]); }
   finally { clearTimeout(timer); }
+}
+
+/** Email over HTTPS APIs, for hosts that block outgoing SMTP ports. MAIL_DRIVER=resend|brevo, MAIL_API_KEY=... */
+async function deliverApi(provider: 'resend' | 'brevo', key: string | undefined, from: { name: string; email: string }, replyTo: string | undefined, to: string, subject: string, html: string, text: string) {
+  if (!key) throw new Error(`MAIL_API_KEY is not set for ${provider}`);
+  const req: { url: string; headers: Record<string, string>; body: unknown } = provider === 'resend'
+    ? { url: 'https://api.resend.com/emails', headers: { authorization: `Bearer ${key}` }, body: { from: `${from.name} <${from.email}>`, to: [to], subject, html, text, ...(replyTo ? { reply_to: replyTo } : {}) } }
+    : { url: 'https://api.brevo.com/v3/smtp/email', headers: { 'api-key': key }, body: { sender: from, to: [{ email: to }], subject, htmlContent: html, textContent: text, ...(replyTo ? { replyTo: { email: replyTo } } : {}) } };
+  const res = await fetch(req.url, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json', ...req.headers }, body: JSON.stringify(req.body), signal: AbortSignal.timeout(20_000) });
+  if (!res.ok) throw new Error(`${provider} rejected the email (${res.status}): ${(await res.text()).slice(0, 300)}`);
 }
 
 export const Mailer = {

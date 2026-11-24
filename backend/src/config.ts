@@ -16,7 +16,8 @@ export type Config = {
   indexKey: Buffer;  // 32 bytes, HMAC blind indexes and result tokens
   trustProxy: boolean;
   mail: {
-    driver: 'sendmail' | 'smtp' | 'log';
+    driver: 'sendmail' | 'smtp' | 'log' | 'resend' | 'brevo';
+    apiKey?: string;
     from: string; fromName: string; replyTo?: string;
     smtp?: { host: string; port: number; secure: boolean; user?: string; pass?: string };
     sendmailPath?: string; logDir?: string; fail?: boolean;
@@ -59,6 +60,7 @@ export function loadConfig(): Config {
     trustProxy: get('TRUST_PROXY', 'true') === 'true',
     mail: {
       driver: (get('MAIL_DRIVER', 'sendmail') as Config['mail']['driver']),
+      apiKey: get('MAIL_API_KEY'),
       from: get('MAIL_FROM', 'no-reply@blazekonzult.nl')!,
       fromName: get('MAIL_FROM_NAME', 'BlazeKonzult')!,
       replyTo: get('MAIL_REPLY_TO'),
