@@ -15,7 +15,7 @@
     "setup": "node backend/dist/cli.js setup",
     "reset-2fa": "node backend/dist/cli.js reset-2fa",
     "build:api": "npm --prefix backend install --include=dev --no-audit --no-fund && npm --prefix backend run build",
-    "dev:local": "node server.js --dev"
+    "dev:local": "NEXT_DEV=true node server.js"
   },
   "dependencies": {
     "express": "4.22.3",

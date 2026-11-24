@@ -3,9 +3,11 @@
  * the assessment + admin API (/api) and uploaded images (/media).
  * cPanel "Setup Node.js App": Application startup file = server.js
  *   node server.js          production (needs `npm run build` first)
- *   node server.js --dev    development with hot reload
+ *   NEXT_DEV=true node server.js   development with hot reload (local only)
  */
-const dev = process.argv.includes("--dev");
+// Development mode only when explicitly requested with NEXT_DEV=true, and never when NODE_ENV=production.
+// Hosting always runs the webpack-compiled .next build (npm start = node server.js).
+const dev = process.env.NEXT_DEV === "true" && process.env.NODE_ENV !== "production";
 if (!process.env.NODE_ENV) process.env.NODE_ENV = dev ? "development" : "production";
 
 const { loadConfig } = require("./backend/dist/config");
