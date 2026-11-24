@@ -19,10 +19,14 @@ const next = require("next");
 const site = next({ dev, dir: __dirname });
 const handle = site.getRequestHandler();
 
-// On every start: update the database schema, install starter content on a new database and
-// create the first owner from BK_* variables (idempotent). The site still starts if the database is down.
-require("./backend/dist/bootstrap").bootstrap((m) => console.log(`[blazekonzult] ${m}`)).catch((e) => console.error("[blazekonzult] setup failed:", e.message))
-  .then(() => site.prepare()).then(() => {
+// Start serving straight away; database setup runs alongside so a slow or unreachable
+// database can never stop the site from starting. Setup is idempotent: it updates the schema,
+// installs starter content on a new database and creates the first owner from BK_* variables.
+console.log(`[blazekonzult] database: ${cfg.db.user || "(no user)"}@${cfg.db.host}:${cfg.db.port}/${cfg.db.name || "(no name)"}`);
+require("./backend/dist/bootstrap").bootstrap((m) => console.log(`[blazekonzult] ${m}`))
+  .catch((e) => console.error(`[blazekonzult] database setup failed: ${e.code ?? ""} ${e.message}`));
+
+site.prepare().then(() => {
   const { createApp } = require("./backend/dist/app");
   const app = createApp({ site: (req, res) => handle(req, res) });
   const port = process.env.PORT || cfg.port || 3000;
