@@ -43,7 +43,9 @@ export function createApp(opts: { site?: Handler } = {}) {
       const origin = req.get('origin');
       const allowed = [cfg.siteUrl, cfg.siteUrl.replace('://', '://www.')];
       if (cfg.env !== 'production') allowed.push('http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001');
-      if (origin && !allowed.includes(origin)) return next(new ApiError('Cross-origin request blocked.', 'forbidden', 403));
+      // Same-origin requests are always fine (also covers the host's preview address); anything else must be the site URL.
+      let sameHost = false; try { sameHost = !!origin && new URL(origin).hostname === req.hostname; } catch { /* malformed origin */ }
+      if (origin && !sameHost && !allowed.includes(origin)) return next(new ApiError('Cross-origin request blocked.', 'forbidden', 403));
       const isUpload = req.path === '/admin/media' && req.method === 'POST';
       if (!isUpload && !req.is('application/json') && req.headers['content-length'] !== '0' && req.headers['content-length']) return next(new ApiError('Expected JSON.', 'unsupported_media_type', 415));
     }

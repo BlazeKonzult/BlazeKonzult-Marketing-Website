@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js --dev",
-    "build": "next build --webpack && npm --prefix backend run build",
+    "dev": "npm run build && NODE_ENV=production node server.js",
+    "build": "NODE_ENV=production next build --webpack && npm run build:api",
     "build:web": "next build --webpack",
     "start": "node server.js",
     "lint": "eslint",
     "migrate": "node backend/dist/cli.js migrate",
     "seed": "node backend/dist/cli.js seed",
     "create-owner": "node backend/dist/cli.js create-owner",
-    "cron": "node backend/dist/cron.js"
+    "cron": "node backend/dist/cron.js",
+    "setup": "node backend/dist/cli.js setup",
+    "reset-2fa": "node backend/dist/cli.js reset-2fa",
+    "build:api": "npm --prefix backend install --include=dev --no-audit --no-fund && npm --prefix backend run build",
+    "dev:local": "node server.js --dev"
   },
   "dependencies": {
     "express": "4.22.3",

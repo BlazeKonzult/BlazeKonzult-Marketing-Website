@@ -1,4 +1,4 @@
-/* Command-line tasks: node dist/cli.js <migrate|seed|create-owner|retention|mail|generate-keys> */
+/* Command-line tasks: node dist/cli.js <setup|migrate|seed|create-owner|retention|mail|generate-keys> */
 import crypto from 'crypto';
 import readline from 'readline';
 import { closePool, db, migrate } from './db';
@@ -30,6 +30,24 @@ async function main() {
       await migrate();
       const r = await seed({ force: process.argv.includes('--force'), publish: !process.argv.includes('--no-publish') });
       console.log('Seeded:', r);
+      return;
+    }
+    case 'setup': {
+      // One-step first install for hosts without a terminal (cPanel "Run JS script" → setup).
+      // Owner details come from BK_EMAIL, BK_NAME and BK_PASSWORD environment variables; remove BK_PASSWORD afterwards.
+      await migrate();
+      console.log('Database tables: ready.');
+      const r = await seed({ force: false, publish: true });
+      console.log('Starter assessments:', r);
+      const email = (process.env.BK_EMAIL ?? '').toLowerCase().trim();
+      const pw = process.env.BK_PASSWORD ?? '';
+      const owners = Number(await db.val("SELECT COUNT(*) FROM users WHERE role = 'owner'"));
+      if (email && pw) {
+        if (!isEmail(email)) throw new Error('BK_EMAIL is not a valid email address');
+        if (await db.val('SELECT id FROM users WHERE email = ?', [email])) console.log(`Owner ${email} already exists; password not changed.`);
+        else { Password.validate(pw); await db.insert('users', { email, name: process.env.BK_NAME || email, role: 'owner', password_hash: Password.hash(pw) }); console.log(`Owner account created for ${email}. Now delete BK_PASSWORD from the environment variables.`); }
+      } else if (!owners) console.log('No owner account yet: set BK_EMAIL, BK_NAME and BK_PASSWORD and run setup again.');
+      else console.log('Owner account already set up.');
       return;
     }
     case 'create-owner': {

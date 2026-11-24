@@ -48,3 +48,7 @@ next-env.d.ts
 .local-preview/
 backend/node_modules/
 backend/dist/
+
+# Private deployment secrets and generated outputs
+PRODUCTION-SECRETS.txt
+Claude outputs/
