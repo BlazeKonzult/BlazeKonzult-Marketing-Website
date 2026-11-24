@@ -21,7 +21,7 @@ function getTransport(): nodemailer.Transporter | null {
   if (m.driver === 'log') return null;
   if (transport) return transport;
   transport = m.driver === 'smtp' && m.smtp
-    ? nodemailer.createTransport({ host: m.smtp.host, port: m.smtp.port, secure: m.smtp.secure, auth: m.smtp.user ? { user: m.smtp.user, pass: m.smtp.pass } : undefined })
+    ? nodemailer.createTransport({ host: m.smtp.host, port: m.smtp.port, secure: m.smtp.secure, auth: m.smtp.user ? { user: m.smtp.user, pass: m.smtp.pass } : undefined, connectionTimeout: 15_000, greetingTimeout: 10_000, socketTimeout: 20_000 })
     : nodemailer.createTransport({ sendmail: true, newline: 'unix', path: m.sendmailPath });
   return transport;
 }
@@ -35,13 +35,22 @@ async function deliver(to: string, subject: string, html: string, text: string):
     fs.writeFileSync(path.join(m.logDir!, `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.json`), JSON.stringify({ to, subject, html, text }));
     return;
   }
-  await getTransport()!.sendMail({ from: { name: m.fromName, address: m.from }, replyTo: m.replyTo ?? m.from, to, subject, html, text, headers: { 'Auto-Submitted': 'auto-generated' } });
+  // Never wait more than 25 seconds for a mail server (a missing or blocked server must not hang anything).
+  let timer: NodeJS.Timeout | undefined;
+  const timeout = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('Mail server did not respond within 25 seconds')), 25_000); });
+  try { await Promise.race([getTransport()!.sendMail({ from: { name: m.fromName, address: m.from }, replyTo: m.replyTo ?? m.from, to, subject, html, text, headers: { 'Auto-Submitted': 'auto-generated' } }), timeout]); }
+  finally { clearTimeout(timer); }
 }
 
 export const Mailer = {
   async queue(kind: string, to: string, subject: string, html: string, text: string, leadId: number | null = null, sendNow = true): Promise<number> {
     const id = await db.insert('email_outbox', { kind, to_enc: Crypto.encrypt(to), subject: subject.slice(0, 250), html_enc: Crypto.encrypt(html), text_enc: Crypto.encrypt(text), lead_id: leadId });
-    if (sendNow) await Mailer.attempt(id);
+    // Send in the background: a sign-in, form submission or report request never waits for the
+    // mail server. Failures stay queued and are retried by the cron job.
+    if (sendNow) {
+      const p = Mailer.attempt(id).catch((e) => { console.error(`[mail] #${id} background send failed: ${(e as Error).message}`); return false; });
+      if (process.env.NODE_ENV === 'test') await p;
+    }
     return id;
   },
 

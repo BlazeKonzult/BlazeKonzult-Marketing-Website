@@ -614,8 +614,9 @@ adminRouter.post('/emails/test', requireCap('settings'), h(async (req) => {
   if (!isEmail(to)) throw new ApiError('Invalid email', 'validation', 422);
   const { renderEmail } = await import('../mailer');
   const [html, text] = renderEmail('en', 'Test email', ['This is a test email from the BlazeKonzult assessment platform.'], null, [], false);
-  const mid = await Mailer.queue('test', to, 'BlazeKonzult test email', html, text);
-  return { sent: (await db.val('SELECT status FROM email_outbox WHERE id = ?', [mid])) === 'sent' };
+  const mid = await Mailer.queue('test', to, 'BlazeKonzult test email', html, text, null, false);
+  const sent = await Mailer.attempt(mid);
+  return { sent, error: sent ? null : await db.val('SELECT last_error FROM email_outbox WHERE id = ?', [mid]) };
 }));
 
 /* -------------------------------- Users -------------------------------- */
