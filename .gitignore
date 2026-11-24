@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cPanel upload bundle
+/deploy/
+/backup/
+
+# local preview data
+.local-preview/
+backend/node_modules/
+backend/dist/

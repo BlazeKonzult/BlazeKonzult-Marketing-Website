@@ -1,0 +1,29 @@
+/**
+ * BlazeKonzult production/dev server: one Node process serving the website (Next.js),
+ * the assessment + admin API (/api) and uploaded images (/media).
+ * cPanel "Setup Node.js App": Application startup file = server.js
+ *   node server.js          production (needs `npm run build` first)
+ *   node server.js --dev    development with hot reload
+ */
+const dev = process.argv.includes("--dev");
+if (!process.env.NODE_ENV) process.env.NODE_ENV = dev ? "development" : "production";
+
+const { loadConfig } = require("./backend/dist/config");
+const cfg = loadConfig();
+// Share the database settings with the website's content loader (same process).
+process.env.BK_DB_JSON = JSON.stringify({ host: cfg.db.host, port: cfg.db.port, database: cfg.db.name, user: cfg.db.user, password: cfg.db.pass });
+
+const next = require("next");
+const site = next({ dev, dir: __dirname });
+const handle = site.getRequestHandler();
+
+site.prepare().then(() => {
+  const { createApp } = require("./backend/dist/app");
+  const app = createApp({ site: (req, res) => handle(req, res) });
+  const port = process.env.PORT || cfg.port || 3000;
+  const server = app.listen(port, () => console.log(`[blazekonzult] ${dev ? "development" : "production"} server on ${port}`));
+  const stop = () => { server.close(() => process.exit(0)); setTimeout(() => process.exit(0), 5000).unref(); };
+  process.on("SIGTERM", stop);
+  process.on("SIGINT", stop);
+}).catch((e) => { console.error(e); process.exit(1); });
+

@@ -1,13 +1,11 @@
 // Shared content data for BlazeKonzult website.
-// NOTE: Replace placeholder values marked "PLACEHOLDER" with real company
-// information before launch. See /PLACEHOLDERS.md in the project root
-// for a consolidated list.
 
 export type NavLink = { label: string; href: string };
 
 export const mainNav: NavLink[] = [
-  { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "Insights", href: "/resources" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -17,16 +15,7 @@ export const companyInfo = {
   founder: "Adeiza Johnson Yisa",
   tagline: "Clear advice. Practical action. Stronger resilience.",
   supportingMessage: "Practical cybersecurity for Dutch SMEs and growing businesses.",
-  // PLACEHOLDER: insert registered business address
-  address: "Business address — PLACEHOLDER (to be added)",
-  // PLACEHOLDER: insert business phone number
-  phone: "+31 (0) 00 000 0000 — PLACEHOLDER",
-  // PLACEHOLDER: insert business email address
-  email: "hello@blazekonzult.example — PLACEHOLDER",
-  // PLACEHOLDER: insert LinkedIn company page URL
-  linkedin: "https://www.linkedin.com/company/blazekonzult — PLACEHOLDER",
-  // PLACEHOLDER: insert scheduling tool URL (e.g. Calendly, Cal.com)
-  bookingUrl: "https://cal.com/blazekonzult — PLACEHOLDER",
+  linkedin: "https://www.linkedin.com/in/dazzy",
   serviceArea: "The Netherlands, with remote support available across the EU",
 };
 
@@ -113,7 +102,7 @@ export const services: Service[] = [
   {
     slug: "security-awareness-training",
     category: "Educate",
-    name: "Security Awareness and Phishing Training",
+    name: "Security Awareness Training",
     shortDescription:
       "Practical training that helps employees recognise phishing, social engineering and business email compromise.",
     bestSuitedFor: "Teams of any size who are often the first line of defence against cyber threats.",
@@ -163,127 +152,9 @@ export const services: Service[] = [
   },
 ];
 
-export const credibilityItems = [
-  "CISSP",
-  "CISM",
-  "CCSP",
-  "PMP",
-  "CEH",
-  "Cyber Governance",
-  "IT and OT Risk",
-  "Incident Preparedness",
-  "Executive Advisory",
-];
 
-export const problemCards = [
-  {
-    title: "Limited internal cybersecurity expertise",
-    description:
-      "Most growing businesses cannot justify a full-time cybersecurity leader, leaving important decisions without senior guidance.",
-    icon: "Users",
-  },
-  {
-    title: "Increasing customer and supplier requirements",
-    description:
-      "Larger customers and partners increasingly expect evidence of cybersecurity maturity before they will do business with you.",
-    icon: "FileSearch",
-  },
-  {
-    title: "Unclear NIS2 and regulatory expectations",
-    description:
-      "Many organisations are unsure whether new regulations may apply to them, or what readiness actually involves.",
-    icon: "Scale",
-  },
-  {
-    title: "Difficulty prioritising security investments",
-    description:
-      "With limited time and budget, it is hard to know which improvements will genuinely reduce risk first.",
-    icon: "ListChecks",
-  },
-];
 
-export const processSteps = [
-  {
-    step: "1",
-    title: "Discover",
-    description: "Discuss the organisation, business priorities and cybersecurity concerns.",
-    icon: "MessageCircle",
-  },
-  {
-    step: "2",
-    title: "Assess",
-    description: "Review the current security posture, risks, controls and requirements.",
-    icon: "SearchCheck",
-  },
-  {
-    step: "3",
-    title: "Prioritise",
-    description: "Identify the most important improvements based on risk, cost and urgency.",
-    icon: "ListOrdered",
-  },
-  {
-    step: "4",
-    title: "Strengthen",
-    description: "Implement a realistic cybersecurity roadmap and measure progress.",
-    icon: "TrendingUp",
-  },
-];
 
-export const sectors = [
-  {
-    name: "Professional Services",
-    description: "Protecting client data, confidential records and everyday business communications.",
-    icon: "Briefcase",
-  },
-  {
-    name: "Healthcare and Healthtech",
-    description: "Supporting patient-data protection and resilience of care-critical systems.",
-    icon: "HeartPulse",
-  },
-  {
-    name: "Manufacturing",
-    description: "Addressing IT and OT risk across production, supply chains and connected equipment.",
-    icon: "Factory",
-  },
-  {
-    name: "SaaS and Data Companies",
-    description: "Strengthening cloud security, access control and customer trust.",
-    icon: "Cloud",
-  },
-  {
-    name: "IT and Managed Service Providers",
-    description: "Reinforcing the security practices that customers rely on you to uphold.",
-    icon: "Server",
-  },
-  {
-    name: "Suppliers to Regulated Organisations",
-    description: "Preparing evidence and controls that satisfy larger customers' due-diligence requirements.",
-    icon: "ShieldCheck",
-  },
-];
-
-export const testimonialPlaceholders = [
-  {
-    label: "Professional Services Company",
-    quote:
-      "Placeholder content. A future client testimonial describing their experience working with BlazeKonzult will appear here.",
-  },
-  {
-    label: "Logistics Supplier",
-    quote:
-      "Placeholder content. A future client testimonial describing their experience working with BlazeKonzult will appear here.",
-  },
-  {
-    label: "Growing Technology Business",
-    quote:
-      "Placeholder content. A future client testimonial describing their experience working with BlazeKonzult will appear here.",
-  },
-  {
-    label: "Healthcare Solutions Provider",
-    quote:
-      "Placeholder content. A future client testimonial describing their experience working with BlazeKonzult will appear here.",
-  },
-];
 
 export const homeFaqs = [
   {
@@ -344,63 +215,357 @@ export const articles: Article[] = [
     excerpt:
       "A practical look at the areas most Dutch SMEs should review first when assessing their cybersecurity posture.",
     category: "Assessment",
-    date: "2026-06-02",
-    readTime: "6 min read",
+    date: "2026-10-16",
+    readTime: "3 min read",
   },
   {
     slug: "nis2-and-the-dutch-cybersecurity-act-what-suppliers-should-prepare",
     title: "NIS2 and the Dutch Cybersecurity Act: What Suppliers Should Prepare",
     excerpt: "What suppliers to regulated organisations should start preparing as expectations evolve.",
     category: "NIS2 & Regulation",
-    date: "2026-05-19",
-    readTime: "7 min read",
+    date: "2026-10-16",
+    readTime: "3 min read",
   },
   {
     slug: "how-to-answer-customer-cybersecurity-questionnaires",
     title: "How to Answer Customer Cybersecurity Questionnaires",
     excerpt: "A practical approach to responding accurately and efficiently to security questionnaires.",
     category: "Supplier Assurance",
-    date: "2026-05-04",
-    readTime: "5 min read",
+    date: "2026-10-16",
+    readTime: "3 min read",
   },
   {
     slug: "microsoft-365-security-basics-for-small-businesses",
     title: "Microsoft 365 Security Basics for Small Businesses",
     excerpt: "Foundational settings and habits that meaningfully reduce risk in Microsoft 365 environments.",
     category: "Practical Guidance",
-    date: "2026-04-21",
-    readTime: "6 min read",
+    date: "2026-10-16",
+    readTime: "2 min read",
   },
   {
     slug: "ransomware-readiness-checklist-for-dutch-msmes",
     title: "Ransomware Readiness Checklist for Dutch MSMEs",
     excerpt: "Key preparations that help smaller organisations respond calmly and recover quickly.",
     category: "Incident Readiness",
-    date: "2026-04-08",
-    readTime: "8 min read",
+    date: "2026-10-16",
+    readTime: "3 min read",
   },
   {
     slug: "why-smaller-businesses-need-a-virtual-ciso",
     title: "Why Smaller Businesses Need a Virtual CISO",
     excerpt: "How part-time senior cybersecurity leadership helps growing businesses make better decisions.",
     category: "Governance",
-    date: "2026-03-27",
-    readTime: "5 min read",
+    date: "2026-10-16",
+    readTime: "2 min read",
   },
   {
     slug: "what-effective-phishing-awareness-training-looks-like",
     title: "What Effective Phishing Awareness Training Looks Like",
     excerpt: "The elements that separate genuinely effective awareness training from a checkbox exercise.",
     category: "Awareness Training",
-    date: "2026-03-11",
-    readTime: "5 min read",
+    date: "2026-10-16",
+    readTime: "3 min read",
   },
   {
     slug: "cybersecurity-for-logistics-healthtech-and-manufacturing-smes",
     title: "Cybersecurity for Logistics, Healthtech and Manufacturing SMEs",
     excerpt: "Sector-specific considerations for organisations that depend on connected operational systems.",
     category: "Sector Insights",
-    date: "2026-02-24",
-    readTime: "7 min read",
+    date: "2026-10-16",
+    readTime: "3 min read",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Service navigation groups (header mega menu, footer, overview page) */
+/* ------------------------------------------------------------------ */
+export const serviceGroups = [
+  {
+    label: "Assess and prepare",
+    description: "Understand where you stand and what is expected of you.",
+    slugs: ["cybersecurity-health-check", "nis2-readiness", "supplier-security-assurance"],
+  },
+  {
+    label: "Lead and improve",
+    description: "Senior direction and steady, measurable progress.",
+    slugs: ["virtual-ciso", "managed-security"],
+  },
+  {
+    label: "Protect and respond",
+    description: "Prepare your people and your plan for a bad day.",
+    slugs: ["security-awareness-training", "incident-response-readiness"],
+  },
+] as const;
+
+export const serviceBySlug = (slug: string) => services.find((s) => s.slug === slug)!;
+
+/* ---------------------------- Credentials ---------------------------- */
+// Verified professional certifications held by the founder.
+export const credentials = [
+  { code: "CISSP", name: "Certified Information Systems Security Professional" },
+  { code: "CISM", name: "Certified Information Security Manager" },
+  { code: "CCSP", name: "Certified Cloud Security Professional" },
+  { code: "CEH", name: "Certified Ethical Hacker" },
+  { code: "PMP", name: "Project Management Professional" },
+];
+
+// Regulations and frameworks the consultancy helps clients navigate (topics, not certifications).
+export const frameworks = ["NIS2 / Cyberbeveiligingswet", "GDPR / AVG", "ISO/IEC 27001", "NEN 7510", "CIS Controls"];
+
+/* ------------------------- Business challenges ------------------------ */
+export const challenges = [
+  {
+    title: "Threats that target smaller firms",
+    description:
+      "Phishing, account takeover, invoice fraud and ransomware are aimed squarely at organisations without a dedicated security team.",
+    icon: "Crosshair",
+  },
+  {
+    title: "Regulation that keeps moving",
+    description:
+      "NIS2 and the Dutch Cybersecurity Act, GDPR and sector rules raise the bar for governance, reporting and evidence.",
+    icon: "Scale",
+  },
+  {
+    title: "No senior security expertise in-house",
+    description:
+      "Important security decisions fall to IT generalists or busy directors who lack the time or background to weigh the risk.",
+    icon: "UserX",
+  },
+  {
+    title: "Disruption to day-to-day operations",
+    description:
+      "A single compromised mailbox or encrypted server can stop sales, deliveries or care for days, not hours.",
+    icon: "Activity",
+  },
+  {
+    title: "Risk inherited through suppliers",
+    description:
+      "IT providers, cloud platforms and partners hold keys to your environment, while your own customers question you in turn.",
+    icon: "Network",
+  },
+  {
+    title: "Uncertain business continuity",
+    description:
+      "Backups exist but are untested, and nobody is quite sure who decides what when systems go down.",
+    icon: "LifeBuoy",
+  },
+];
+
+/* --------------------------- Differentiators -------------------------- */
+export const differentiators = [
+  {
+    title: "Practical cybersecurity expertise",
+    description: "Senior, certified experience across governance, cloud, IT and OT risk — applied at a scale that fits an SME.",
+  },
+  {
+    title: "Business-focused recommendations",
+    description: "Findings are framed as business risk with a clear owner, cost and priority, not a list of technical faults.",
+  },
+  {
+    title: "Tailored engagements",
+    description: "Fixed-scope assessments or ongoing support, sized to your organisation rather than a fixed package.",
+  },
+  {
+    title: "European regulatory understanding",
+    description: "Grounded in NIS2, the Dutch Cybersecurity Act and GDPR, and in what your customers will ask of you because of them.",
+  },
+  {
+    title: "Flexible security leadership",
+    description: "Virtual CISO support gives you senior direction for a few days a month instead of a full-time executive hire.",
+  },
+  {
+    title: "Long-term risk reduction",
+    description: "Every engagement ends in a prioritised roadmap you can track, so progress continues after the report is delivered.",
+  },
+];
+
+/* ----------------------------- Methodology ---------------------------- */
+export const methodology = [
+  {
+    step: "01",
+    title: "Discover",
+    description: "We learn how your organisation works, what it depends on and what your customers and regulators expect.",
+    output: "Scope and priorities agreed",
+  },
+  {
+    step: "02",
+    title: "Assess",
+    description: "We review controls, processes and suppliers against recognised good practice and your obligations.",
+    output: "Evidence-based findings",
+  },
+  {
+    step: "03",
+    title: "Strategize",
+    description: "Findings become a roadmap ranked by risk, cost and urgency, written for decision-makers.",
+    output: "Prioritised roadmap",
+  },
+  {
+    step: "04",
+    title: "Implement",
+    description: "We guide your team and IT provider through the changes, from policies to technical settings.",
+    output: "Controls in place",
+  },
+  {
+    step: "05",
+    title: "Improve",
+    description: "Regular reviews track progress, re-test assumptions and adjust to new threats and requirements.",
+    output: "Measurable progress",
+  },
+];
+
+/* ------------------------------ Industries ---------------------------- */
+export type Industry = {
+  slug: string;
+  name: string;
+  icon: string;
+  summary: string;
+  dependsOn: string;
+  challenges: string[];
+  priorities: string[];
+  regulatory: string;
+  services: string[];
+};
+
+export const industries: Industry[] = [
+  {
+    slug: "professional-services",
+    name: "Professional services",
+    icon: "Briefcase",
+    summary:
+      "Law, accounting, consulting and advisory firms hold confidential client information and move money on clients' behalf, which makes them a prime target for email fraud.",
+    dependsOn: "Email, document management and client portals",
+    challenges: [
+      "Business email compromise and fake payment instructions",
+      "Confidential client files spread across email, cloud storage and laptops",
+      "Clients asking for security assurances during onboarding",
+    ],
+    priorities: [
+      "Multi-factor authentication and mailbox monitoring",
+      "Clear verification procedure for payment changes",
+      "Controlled document sharing and retention",
+    ],
+    regulatory: "GDPR applies to almost all client data; professional confidentiality duties raise the stakes of a breach.",
+    services: ["cybersecurity-health-check", "security-awareness-training", "virtual-ciso"],
+  },
+  {
+    slug: "healthcare-healthtech",
+    name: "Healthcare and healthtech",
+    icon: "HeartPulse",
+    summary:
+      "Clinics, care providers and the software companies that serve them handle special-category health data and support processes where downtime affects people directly.",
+    dependsOn: "Patient records, clinical software and connected devices",
+    challenges: [
+      "Health data is a special category under the GDPR",
+      "Care-critical systems with little tolerance for downtime",
+      "Hospitals and care groups demanding detailed supplier assurance",
+    ],
+    priorities: [
+      "Strict access control and logging on patient data",
+      "Tested recovery for care-critical systems",
+      "Evidence packs aligned with NEN 7510 expectations",
+    ],
+    regulatory: "Healthcare is a NIS2 sector; Dutch healthcare buyers commonly reference NEN 7510 for information security.",
+    services: ["nis2-readiness", "supplier-security-assurance", "incident-response-readiness"],
+  },
+  {
+    slug: "manufacturing",
+    name: "Manufacturing",
+    icon: "Factory",
+    summary:
+      "Production environments increasingly connect machines to office networks and the cloud, often running older software that cannot simply be patched.",
+    dependsOn: "Production lines, OT networks and machine-supplier remote access",
+    challenges: [
+      "Operational technology that cannot be updated like office IT",
+      "Remote maintenance access held by machine suppliers",
+      "An office infection spreading onto the production floor",
+    ],
+    priorities: [
+      "Separation between office IT and production networks",
+      "Controlled, logged supplier remote access",
+      "Recovery plans for machine configurations and production data",
+    ],
+    regulatory: "Several manufacturing sub-sectors fall within NIS2 scope as important entities.",
+    services: ["cybersecurity-health-check", "nis2-readiness", "incident-response-readiness"],
+  },
+  {
+    slug: "logistics-transport",
+    name: "Logistics and transport",
+    icon: "Truck",
+    summary:
+      "Logistics businesses run on tightly connected platforms shared with shippers, carriers and customs, so an outage is felt immediately in missed deliveries.",
+    dependsOn: "Transport and warehouse systems, partner data exchange",
+    challenges: [
+      "Invoice redirection and payment fraud across many counterparties",
+      "Dependence on partner portals and integrations",
+      "Operations that stop when planning systems are down",
+    ],
+    priorities: [
+      "Strong authentication on portals and partner access",
+      "Manual fallback procedures for multi-day outages",
+      "Supplier and integration risk mapping",
+    ],
+    regulatory: "Transport is a NIS2 sector; larger shippers increasingly pass security requirements down the chain.",
+    services: ["nis2-readiness", "incident-response-readiness", "supplier-security-assurance"],
+  },
+  {
+    slug: "saas-data",
+    name: "SaaS and data companies",
+    icon: "Cloud",
+    summary:
+      "Software and data businesses sell trust as much as functionality: enterprise customers expect mature cloud security before they sign.",
+    dependsOn: "Cloud infrastructure, code pipelines and customer data",
+    challenges: [
+      "Long security questionnaires blocking enterprise deals",
+      "Cloud misconfiguration and over-privileged access",
+      "Customer data spread across tools and environments",
+    ],
+    priorities: [
+      "A reusable assurance and evidence pack",
+      "Least-privilege cloud access and secrets management",
+      "A credible roadmap toward ISO/IEC 27001 where customers expect it",
+    ],
+    regulatory: "Customer contracts and GDPR processor obligations often define the security bar before any regulation does.",
+    services: ["supplier-security-assurance", "virtual-ciso", "managed-security"],
+  },
+  {
+    slug: "it-msp",
+    name: "IT and managed service providers",
+    icon: "Server",
+    summary:
+      "Providers with administrative access to many client environments are a high-value target: one compromise can reach every customer.",
+    dependsOn: "Remote management tools and privileged client access",
+    challenges: [
+      "Privileged access to multiple customer environments",
+      "Clients and their regulators asking for evidence of controls",
+      "Balancing service delivery with internal security discipline",
+    ],
+    priorities: [
+      "Hardened remote management and privileged access",
+      "Documented incident notification to clients",
+      "Independent oversight of your own security posture",
+    ],
+    regulatory: "Managed service providers are explicitly named in NIS2 within ICT service management.",
+    services: ["virtual-ciso", "nis2-readiness", "managed-security"],
+  },
+  {
+    slug: "regulated-suppliers",
+    name: "Suppliers to regulated organisations",
+    icon: "Link2",
+    summary:
+      "Smaller firms that supply energy, healthcare, government or financial organisations inherit their customers' obligations through contracts and audits.",
+    dependsOn: "Customer contracts, shared data and system connections",
+    challenges: [
+      "Security clauses and incident-notification duties in contracts",
+      "Questionnaires and audits without in-house expertise to answer them",
+      "Risk of losing tenders on security grounds",
+    ],
+    priorities: [
+      "Fundamental controls documented and evidenced",
+      "A short, tested incident notification procedure",
+      "An owner for security at management level",
+    ],
+    regulatory: "Organisations in NIS2 scope must manage supply-chain risk, so their expectations flow down to you.",
+    services: ["supplier-security-assurance", "nis2-readiness", "cybersecurity-health-check"],
   },
 ];

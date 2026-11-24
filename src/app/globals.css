@@ -1,123 +1,435 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   BlazeKonzult design tokens
+   Navy-led system with the BlazeKonzult purple kept as the signature accent.
+   See /DESIGN_SYSTEM.md for rationale and usage rules.
+   ========================================================================== */
+
+@theme {
+  /* --- Colour: surfaces (dark) --- */
+  --color-ink-950: #081421; /* midnight navy — primary dark surface */
+  --color-ink-900: #0d1b2a; /* deep navy — raised dark surface */
+  --color-ink-800: #132538; /* dark panels, inputs on dark */
+  --color-ink-700: #1c3249; /* hairlines on dark */
+  --color-ink-600: #2b4562; /* stronger lines / disabled on dark */
+  --color-ink-300: #9fb0c4; /* secondary text on dark (AA on ink-950) */
+  --color-ink-200: #c9d4e1; /* body text on dark */
+
+  /* --- Colour: surfaces (light) --- */
+  --color-paper: #f7f9fc; /* off-white page background */
+  --color-mist: #eef2f8; /* subtle panel on light */
+  --color-line: #dde4ee; /* hairlines on light */
+  --color-heading: #0b1726; /* headings on light */
+  --color-body: #334155; /* body text on light */
+  --color-muted: #5d6b80; /* secondary text on light (slate) */
+
+  /* --- Colour: brand + accents (use sparingly) --- */
+  --color-brand: #6d3bea; /* BlazeKonzult purple — primary actions, signature */
+  --color-brand-600: #5a2bd4; /* hover/pressed */
+  --color-brand-300: #b39dfa; /* purple on dark (text/eyebrows) */
+  --color-brand-50: #f1edff;
+  --color-cobalt: #1649a8; /* corporate blue — links on light, data */
+  --color-azure: #3478f6; /* electric blue — data visualisation */
+  --color-signal: #00b8d9; /* cyan — status/highlights in visuals only */
+  --color-ok: #0b7d5e;
+  --color-warn: #a35d00;
+  --color-risk: #d14343;
+
+  /* --- Admin (Command Centre) semantic tokens; light values here, dark values under .admin-root --- */
+  --color-surface: #ffffff;
+  --color-surface-2: #f9fafb;
+  --color-line-strong: #d0d5dd;
+  --color-ok-bg: #ecfdf3;
+  --color-ok-fg: #067647;
+  --color-warn-bg: #fffaeb;
+  --color-warn-fg: #b54708;
+  --color-risk-bg: #fef3f2;
+  --color-risk-fg: #b42318;
+  --color-info-bg: #eff8ff;
+  --color-info-fg: #175cd3;
+  --color-brand-fg: #5925dc;
+  --color-sb: #0b1424;
+  --color-sb-2: #131f33;
+  --color-sb-line: #1d2a40;
+  --color-sb-text: #c3cddb;
+  --color-sb-muted: #8696ad;
+
+  /* --- Typography --- */
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* --- Radii (restrained) --- */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* --- Shadows --- */
+  --shadow-hairline: 0 0 0 1px rgb(11 23 38 / 0.06);
+  --shadow-raised: 0 1px 2px rgb(11 23 38 / 0.06), 0 8px 24px -12px rgb(11 23 38 / 0.18);
+  --shadow-overlay: 0 24px 64px -24px rgb(8 20 33 / 0.45);
+
+  /* --- Breakpoints (Tailwind defaults kept; xs added for 430px phones) --- */
+  --breakpoint-xs: 26.875rem;
+
+  /* --- Motion --- */
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-pulse-node: pulse-node 3.2s var(--ease-out-soft) infinite;
+  --animate-dash: dash 14s linear infinite;
+
+  @keyframes pulse-node {
+    0%, 100% { opacity: 0.45; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.35); }
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -240; }
+  }
+}
+
 :root {
-  /* BlazeKonzult brand palette */
-  --color-deep-purple: #32156F;
-  --color-primary-purple: #6D3BEA;
-  --color-bright-violet: #8B5CF6;
-  --color-light-lavender: #F2EEFF;
-  --color-bg-offwhite: #FAF8FF;
-  --color-text-dark: #15131D;
-  --color-text-secondary: #5D5968;
-  --color-white: #FFFFFF;
-  --color-resilience-teal: #0F9E8E;
-  --color-resilience-teal-light: #E4F7F4;
+  /* Spacing & layout tokens */
+  --container: 76rem;
+  --container-narrow: 46rem;
+  --gutter: clamp(1rem, 0.4rem + 3vw, 2.5rem);
+  --space-section: clamp(4rem, 2.8rem + 5vw, 7.5rem);
+  --space-block: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  --header-h: 4.5rem;
+  --header-h-compact: 3.75rem;
 
-  --background: var(--color-bg-offwhite);
-  --foreground: var(--color-text-dark);
+  /* Motion tokens */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 600ms;
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px var(--color-paper), 0 0 0 5px var(--color-brand);
+  --focus-ring-dark: 0 0 0 3px var(--color-ink-950), 0 0 0 5px var(--color-brand-300);
+
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-deep-purple: var(--color-deep-purple);
-  --color-primary-purple: var(--color-primary-purple);
-  --color-bright-violet: var(--color-bright-violet);
-  --color-light-lavender: var(--color-light-lavender);
-  --color-bg-offwhite: var(--color-bg-offwhite);
-  --color-text-dark: var(--color-text-dark);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-resilience-teal: var(--color-resilience-teal);
-  --color-resilience-teal-light: var(--color-resilience-teal-light);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --font-heading: var(--font-manrope);
-  --font-sans: var(--font-inter);
-
-  --animate-fade-up: fade-up 0.6s ease-out both;
-  --animate-slow-pan: slow-pan 18s ease-in-out infinite alternate;
-
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes slow-pan {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(-2%, 2%) scale(1.03); }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
+@layer base {
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-heading);
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+p { text-wrap: pretty; }
+
+::selection { background: var(--color-brand); color: #fff; }
+
+/* ---------- Focus states ---------- */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus { outline: none; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+.on-dark :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  box-shadow: var(--focus-ring-dark);
+}
+
+}
+
+@layer components {
+/* ---------- Layout ---------- */
+.container-page {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container-narrow {
+  width: 100%;
+  max-width: calc(var(--container-narrow) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { padding-block: var(--space-section); }
+.section-tight { padding-block: var(--space-block); }
+
+/* ---------- Type scale (fluid) ---------- */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.375rem, 1.55rem + 3.6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+.t-h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.45rem + 2.4vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.625rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+.t-h3 {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(1.1875rem, 1.08rem + 0.45vw, 1.4375rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+.t-lead {
+  font-size: clamp(1.0625rem, 0.99rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+}
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.t-mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+/* ---------- Surfaces ---------- */
+.surface-dark {
+  background-color: var(--color-ink-950);
+  color: var(--color-ink-200);
+}
+.surface-dark :where(h1, h2, h3, h4) { color: #fff; }
+
+/* Architectural grid used behind dark heroes */
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgb(159 176 196 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(159 176 196 / 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+}
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(11 23 38 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(11 23 38 / 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ---------- Links ---------- */
+.link {
+  color: var(--color-cobalt);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast);
+}
+.link:hover { color: var(--color-brand); }
+.surface-dark .link { color: var(--color-brand-300); }
+.surface-dark .link:hover { color: #fff; }
+
+/* Arrow link with animated arrow */
+.arrow-link { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; }
+.arrow-link svg { transition: transform var(--dur-base) var(--ease-out-soft); }
+.arrow-link:hover svg { transform: translateX(3px); }
+
+/* ---------- Article prose ---------- */
+.prose-bk h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+.prose-bk p { margin-top: 1rem; }
+.prose-bk ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; }
+.prose-bk li { margin-top: 0.5rem; }
+.prose-bk li::marker { color: var(--color-brand); }
+
+/* ---------- Motion: native scroll-driven reveals (no JS) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+  }
+  .hero-enter { animation: hero-enter 0.8s var(--ease-out-soft) both; }
+  .hero-enter-2 { animation: hero-enter 0.8s var(--ease-out-soft) 0.12s both; }
+  .hero-enter-3 { animation: hero-enter 0.8s var(--ease-out-soft) 0.24s both; }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-}
-
-body {
-  background: var(--color-bg-offwhite);
-  color: var(--color-text-dark);
-  font-family: var(--font-sans);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--color-deep-purple);
-}
-
-/* Visible focus states for accessibility (WCAG 2.2 AA) */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--color-bright-violet);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.container-page {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-@media (min-width: 640px) {
-  .container-page {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-.gradient-purple {
-  background: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-primary-purple) 55%, var(--color-bright-violet) 100%);
-}
-
-.gradient-purple-soft {
-  background: linear-gradient(135deg, var(--color-light-lavender) 0%, var(--color-bg-offwhite) 100%);
-}
-
+/* ---------- Utilities ---------- */
 .sr-only-focusable:not(:focus) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: #fff; }
+}
+
+/* Methodology connector line draws in as the section scrolls into view */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal-line {
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+  }
+}
+@keyframes draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ---------- Form controls ---------- */
+.field-label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--color-heading); margin-bottom: 0.4rem; }
+.field-label .opt { font-weight: 400; color: var(--color-muted); }
+.field {
+  width: 100%;
+  min-height: 2.875rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: var(--color-heading);
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.field::placeholder { color: #94a3b8; }
+.field:hover { border-color: #c3cedc; }
+.field:focus-visible, .field:focus { border-color: var(--color-brand); box-shadow: 0 0 0 3px rgb(109 59 234 / 0.15); outline: none; }
+.field[aria-invalid="true"], .was-validated .field:invalid { border-color: var(--color-risk); }
+select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.25rem; }
+.check { margin-top: 0.2rem; width: 1.125rem; height: 1.125rem; flex-shrink: 0; accent-color: var(--color-brand); }
+.btn-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  height: 3rem; padding-inline: 1.5rem; border-radius: var(--radius-sm);
+  background: var(--color-brand); color: #fff; font-weight: 600;
+  transition: background-color var(--dur-fast), transform var(--dur-fast);
+}
+.btn-submit:hover { background: var(--color-brand-600); }
+.btn-submit:active { transform: translateY(1px); }
+.btn-submit:disabled { opacity: 0.6; cursor: wait; }
+.form-error { font-size: 0.875rem; color: #9f1d1d; background: #fdf0f0; border: 1px solid #f3c8c8; border-radius: var(--radius-sm); padding: 0.75rem 1rem; }
+
+}
+
+/* ==========================================================================
+   Command Centre (admin) theme. Light and dark are designed separately:
+   the Tailwind colour variables are re-pointed inside .admin-root so every
+   admin component follows the active theme. See ADMIN_REDESIGN_STATUS.md.
+   ========================================================================== */
+.admin-root {
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-paper: #f5f7fa;
+  --color-mist: #f2f4f7;
+  --color-line: #e4e7ec;
+  --color-heading: #101828;
+  --color-body: #344054;
+  --color-muted: #667085;
+  --color-cobalt: #1d4ed8;
+  --a-shadow-card: 0 1px 2px rgb(16 24 40 / 0.04);
+  --a-shadow-pop: 0 12px 32px -8px rgb(16 24 40 / 0.18), 0 2px 6px rgb(16 24 40 / 0.06);
+  --a-focus: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-brand);
+  --a-chart-1: #6d3bea; --a-chart-2: #eb6834; --a-chart-3: #1baf7a; --a-chart-4: #2a78d6; --a-chart-grid: #eaecf0;
+  --a-dur: 160ms;
+  color: var(--color-body);
+  background: var(--color-paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  color-scheme: light;
+}
+html[data-admin-theme="dark"] .admin-root {
+  --color-paper: #0b111c;
+  --color-surface: #121a28;
+  --color-surface-2: #172133;
+  --color-mist: #1b2638;
+  --color-line: #243048;
+  --color-line-strong: #33425e;
+  --color-heading: #f2f4f7;
+  --color-body: #ced5e0;
+  --color-muted: #98a6ba;
+  --color-cobalt: #8ab4f8;
+  --color-brand-50: #251c47;
+  --color-brand-fg: #c4b5fd;
+  --color-ok-bg: #0f2e24; --color-ok-fg: #6ce9a6;
+  --color-warn-bg: #33260e; --color-warn-fg: #fec84b;
+  --color-risk-bg: #3a1517; --color-risk-fg: #fda29b;
+  --color-info-bg: #102a4c; --color-info-fg: #84caff;
+  --color-sb: #080e19; --color-sb-2: #101a2b; --color-sb-line: #19253a;
+  --a-shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+  --a-shadow-pop: 0 16px 40px -8px rgb(0 0 0 / 0.6), 0 0 0 1px #243048;
+  --a-chart-1: #9085e9; --a-chart-2: #d95926; --a-chart-3: #199e70; --a-chart-4: #3987e5; --a-chart-grid: #222d42;
+  color-scheme: dark;
+}
+.admin-root :focus-visible { outline: none; box-shadow: var(--a-focus); border-radius: 6px; }
+.admin-root .tnum, .admin-root table { font-variant-numeric: tabular-nums; }
+.admin-root .form-error { color: var(--color-risk-fg); background: var(--color-risk-bg); border-color: color-mix(in srgb, var(--color-risk-fg) 25%, transparent); }
+.admin-root .check { accent-color: var(--color-brand); }
+.admin-root input[type="date"], .admin-root input[type="datetime-local"] { color-scheme: inherit; }
+.admin-root ::selection { background: color-mix(in srgb, var(--color-brand) 30%, transparent); }
+.a-skel { background: linear-gradient(90deg, var(--color-mist) 0%, var(--color-line) 50%, var(--color-mist) 100%); background-size: 200% 100%; animation: a-shimmer 1.4s ease-in-out infinite; border-radius: 6px; }
+@keyframes a-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+@keyframes a-pop { from { opacity: 0; transform: translateY(-4px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes a-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes a-slide-in { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes a-toast { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.a-pop { animation: a-pop var(--a-dur) cubic-bezier(0.2, 0.7, 0.2, 1); }
+.a-fade { animation: a-fade var(--a-dur) ease-out; }
+.a-drawer { animation: a-slide-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.a-toast { animation: a-toast 200ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.a-sidebar { transition: width 200ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.a-scroll { scrollbar-width: thin; scrollbar-color: var(--color-sb-line) transparent; }
+@media (prefers-reduced-motion: reduce) {
+  .a-pop, .a-fade, .a-drawer, .a-toast, .a-skel { animation: none; }
+  .a-sidebar { transition: none; }
+}
+@media print {
+  .admin-root aside, .admin-root header[data-topbar], .admin-root [data-noprint] { display: none !important; }
+}
+
+/* Admin selects: drop the native control styling (macOS renders it shorter than text inputs)
+   so every dropdown matches the height, border and padding of the other fields. */
+.admin-root select:not([multiple]):not([size]) {
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: 1.25rem;
+  padding-right: 2.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 16px;
+}
+html[data-admin-theme="dark"] .admin-root select:not([multiple]):not([size]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2398a6ba' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+}
+.admin-root select option { background: var(--color-surface); color: var(--color-heading); }

@@ -1,83 +1,102 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import PageHero from "@/components/PageHero";
+import { alternates } from "@/lib/seo";
+import Link from "@/components/LocalLink";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Button from "@/components/Button";
-import SectionHeading from "@/components/SectionHeading";
-import ServiceCard from "@/components/ServiceCard";
-import { services } from "@/lib/data";
+import PageHero from "@/components/PageHero";
+import SectionIntro from "@/components/SectionIntro";
+import IconRenderer from "@/components/IconRenderer";
+import CtaBand from "@/components/CtaBand";
+import { getDoc } from "@/content/server";
+import { getCatalog, serviceLookup, getUi } from "@/content/catalog";
+import type { ServicesPageDoc } from "@/content/defaults";
 
-export const metadata: Metadata = {
-  title: "Cybersecurity Services for Dutch SMEs",
-  description:
-    "Explore BlazeKonzult's cybersecurity services: health checks, NIS2 readiness, virtual CISO support, managed security, awareness training, incident response and supplier assurance.",
-  alternates: { canonical: "/services" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getDoc<ServicesPageDoc>("page:services");
+  return { title: c.seo.title, description: c.seo.description, alternates: await alternates("/services") };
+}
 
-const categories = ["Assess", "Prepare", "Govern", "Educate", "Respond", "Improve"] as const;
-
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const t = await getUi();
+  const [c, catalog] = await Promise.all([getDoc<ServicesPageDoc>("page:services"), getCatalog()]);
+  const { services, serviceGroups } = catalog;
+  const find = serviceLookup(services);
+  const serviceBySlug = (slug: string) => find(slug)!;
   return (
     <>
       <PageHero
-        eyebrow="Services"
-        title="Cybersecurity services built for growing Dutch businesses"
-        description="Every engagement is scoped around your business — not a generic checklist. Explore our services below, grouped by what they help you do."
+        breadcrumbs={[{ label: t.home, href: "/" }, { label: t.services }]}
+        eyebrow={c.hero.eyebrow}
+        title={c.hero.title}
+        description={c.hero.description}
       >
-        <div className="mt-8 flex flex-col sm:flex-row gap-4">
-          <Button href="/contact" size="lg">Book a Free Discovery Call</Button>
-          <Button href="/cybersecurity-health-check" variant="secondary" size="lg">Request a Health Check</Button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button href={c.hero.primary.href} size="lg" arrow>{c.hero.primary.label}</Button>
+          <Button href={c.hero.secondary.href} size="lg" variant="inverse">{c.hero.secondary.label}</Button>
         </div>
       </PageHero>
 
-      <section className="py-16 sm:py-20">
-        <div className="container-page">
-          <div className="flex flex-wrap justify-center gap-2 mb-14" aria-label="Service categories">
-            {categories.map((cat) => (
-              <span
-                key={cat}
-                className="text-xs font-semibold uppercase tracking-wide text-primary-purple bg-light-lavender rounded-full px-4 py-2"
-              >
-                {cat}
-              </span>
-            ))}
+      {serviceGroups.map((group, gi) => (
+        <section key={group.label} className={`section ${gi % 2 ? "bg-white border-y border-line" : "bg-paper"}`}>
+          <div className="container-page grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.6fr)] lg:gap-16">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <p className="t-mono text-sm text-muted">{String(gi + 1).padStart(2, "0")} / {String(serviceGroups.length).padStart(2, "0")}</p>
+              <SectionIntro title={group.label.replace(/^./, (c) => c.toUpperCase()) + "."} lead={group.description} className="mt-2" />
+            </div>
+            <ul className="border-t border-line">
+              {group.slugs.filter((x) => find(x)).map((slug) => {
+                const s = serviceBySlug(slug);
+                return (
+                  <li key={slug} className="reveal border-b border-line">
+                    <Link href={s.href} className="group grid gap-5 py-8 sm:grid-cols-[2.5rem_minmax(0,1fr)_auto]">
+                      <IconRenderer name={s.icon} size={26} className="text-brand mt-1" />
+                      <div>
+                        <h3 className="t-h3 text-[1.375rem] group-hover:text-brand transition-colors">{s.name}</h3>
+                        <p className="mt-2 text-body leading-relaxed max-w-2xl">{s.shortDescription}</p>
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                          {s.deliverables.map((d) => (
+                            <li key={d} className="text-xs font-medium text-heading bg-mist border border-line rounded-[var(--radius-xs)] px-2.5 py-1">
+                              {d}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <span className="hidden sm:grid place-items-center w-11 h-11 rounded-full border border-line text-heading transition-colors group-hover:bg-brand group-hover:border-brand group-hover:text-white">
+                        <ArrowUpRight size={18} aria-hidden="true" />
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <ServiceCard key={service.slug} service={service} showDeliverables />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
-      {/* Comparison section */}
-      <section className="py-16 sm:py-20 bg-white border-y border-light-lavender">
+      {/* Comparison */}
+      <section className="section bg-paper">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Not sure which service fits?"
-            title="Compare services at a glance"
-            description="Use this overview to identify the best starting point for your organisation. Most clients begin with a Cybersecurity Health Check."
-          />
-          <div className="mt-14 overflow-x-auto">
-            <table className="w-full border-collapse min-w-[720px]">
-              <caption className="sr-only">Comparison of BlazeKonzult cybersecurity services</caption>
+          <SectionIntro eyebrow={c.compare.eyebrow} title={c.compare.title} />
+          <div className="mt-10 overflow-x-auto rounded-[var(--radius-md)] border border-line bg-white">
+            <table className="w-full min-w-[760px] border-collapse text-left">
+              <caption className="sr-only">Comparison of BlazeKonzult services by who they suit and the outcome</caption>
               <thead>
-                <tr className="border-b-2 border-light-lavender">
-                  <th scope="col" className="text-left py-4 pr-4 text-sm font-bold text-deep-purple">Service</th>
-                  <th scope="col" className="text-left py-4 px-4 text-sm font-bold text-deep-purple">Best suited for</th>
-                  <th scope="col" className="text-left py-4 px-4 text-sm font-bold text-deep-purple">Category</th>
-                  <th scope="col" className="text-left py-4 pl-4 text-sm font-bold text-deep-purple">Outcome</th>
+                <tr className="border-b border-line bg-mist">
+                  <th scope="col" className="py-4 px-5 t-eyebrow text-muted font-medium">{c.compare.serviceLabel}</th>
+                  <th scope="col" className="py-4 px-5 t-eyebrow text-muted font-medium">{c.compare.bestForLabel}</th>
+                  <th scope="col" className="py-4 px-5 t-eyebrow text-muted font-medium">{c.compare.outcomeLabel}</th>
                 </tr>
               </thead>
               <tbody>
                 {services.map((s) => (
-                  <tr key={s.slug} className="border-b border-light-lavender">
-                    <th scope="row" className="text-left py-4 pr-4 font-semibold text-text-dark whitespace-nowrap">
-                      <Link href={s.href} className="hover:text-primary-purple">{s.name}</Link>
+                  <tr key={s.slug} className="border-b border-line last:border-0 align-top">
+                    <th scope="row" className="py-5 px-5 font-semibold text-heading">
+                      <Link href={s.href} className="hover:text-brand inline-flex items-center gap-1.5">
+                        {s.name} <ArrowRight size={14} aria-hidden="true" />
+                      </Link>
                     </th>
-                    <td className="py-4 px-4 text-sm text-text-secondary">{s.bestSuitedFor}</td>
-                    <td className="py-4 px-4 text-sm text-text-secondary">{s.category}</td>
-                    <td className="py-4 pl-4 text-sm text-text-secondary">{s.outcome}</td>
+                    <td className="py-5 px-5 text-[0.9375rem] text-body">{s.bestSuitedFor}</td>
+                    <td className="py-5 px-5 text-[0.9375rem] text-body">{s.outcome}</td>
                   </tr>
                 ))}
               </tbody>
@@ -86,23 +105,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <div className="container-page">
-          <div className="gradient-purple-soft border border-light-lavender rounded-3xl p-10 sm:p-16 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-deep-purple max-w-2xl mx-auto">
-              Still unsure which service is right for you?
-            </h2>
-            <p className="mt-4 text-lg text-text-secondary max-w-xl mx-auto">
-              Talk to a cybersecurity adviser and we&apos;ll help you find the most practical starting point.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" size="lg" icon={<ArrowRight size={18} aria-hidden="true" />}>
-                Talk to a Cybersecurity Adviser
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBand title={c.closing.title} body={c.closing.body} primary={c.closing.primary} secondary={c.closing.secondary} />
     </>
   );
 }

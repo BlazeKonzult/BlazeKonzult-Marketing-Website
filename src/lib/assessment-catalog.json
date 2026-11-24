@@ -1,0 +1,584 @@
+{
+  "templates": [
+    {
+      "slug": "general",
+      "sort": 1,
+      "name": {
+        "en": "General Cybersecurity Readiness Assessment",
+        "nl": "Algemene cybersecuritygereedheidsscan"
+      },
+      "summary": {
+        "en": "A complete picture across governance, access, infrastructure, data, incident response, awareness and regulation.",
+        "nl": "Een volledig beeld van governance, toegang, infrastructuur, gegevens, incidentrespons, awareness en regelgeving."
+      },
+      "audience": {
+        "en": "Owners, directors and IT leads of small and medium-sized organisations.",
+        "nl": "Eigenaren, directeuren en IT-verantwoordelijken van kleine en middelgrote organisaties."
+      },
+      "evaluates": [
+        {
+          "en": "Security governance",
+          "nl": "Beveiligingsgovernance"
+        },
+        {
+          "en": "Identity and access",
+          "nl": "Identiteit en toegang"
+        },
+        {
+          "en": "Infrastructure and endpoints",
+          "nl": "Infrastructuur en endpoints"
+        },
+        {
+          "en": "Data protection and resilience",
+          "nl": "Gegevensbescherming en veerkracht"
+        },
+        {
+          "en": "Incident response",
+          "nl": "Incidentrespons"
+        },
+        {
+          "en": "Security awareness",
+          "nl": "Security-awareness"
+        },
+        {
+          "en": "Regulatory readiness",
+          "nl": "Gereedheid voor regelgeving"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Free Cybersecurity Readiness Assessment",
+          "nl": "Gratis cybersecuritygereedheidsscan"
+        },
+        "description": {
+          "en": "Assess your organisation’s cybersecurity maturity across seven domains and get practical, prioritised recommendations.",
+          "nl": "Beoordeel de cybersecurityvolwassenheid van uw organisatie op zeven domeinen en ontvang praktische, geprioriteerde aanbevelingen."
+        }
+      },
+      "minutes": 11,
+      "questions": 50,
+      "categories": [
+        {
+          "key": "governance",
+          "name": {
+            "en": "Security governance",
+            "nl": "Beveiligingsgovernance"
+          },
+          "description": {
+            "en": "How cybersecurity is owned, planned and overseen.",
+            "nl": "Hoe cybersecurity is belegd, gepland en bewaakt."
+          }
+        },
+        {
+          "key": "identity",
+          "name": {
+            "en": "Identity and access",
+            "nl": "Identiteit en toegang"
+          },
+          "description": {
+            "en": "Who can log in to what, and how well accounts are protected.",
+            "nl": "Wie waar kan inloggen en hoe goed accounts zijn beschermd."
+          }
+        },
+        {
+          "key": "infrastructure",
+          "name": {
+            "en": "Infrastructure and endpoints",
+            "nl": "Infrastructuur en endpoints"
+          },
+          "description": {
+            "en": "Devices, networks, cloud services and how they are kept secure.",
+            "nl": "Apparaten, netwerken, clouddiensten en hoe die veilig worden gehouden."
+          }
+        },
+        {
+          "key": "data",
+          "name": {
+            "en": "Data protection and resilience",
+            "nl": "Gegevensbescherming en veerkracht"
+          },
+          "description": {
+            "en": "Protecting important data and recovering when something goes wrong.",
+            "nl": "Belangrijke gegevens beschermen en herstellen als er iets misgaat."
+          }
+        },
+        {
+          "key": "incident",
+          "name": {
+            "en": "Incident response",
+            "nl": "Incidentrespons"
+          },
+          "description": {
+            "en": "Detecting, handling and recovering from security incidents.",
+            "nl": "Beveiligingsincidenten opmerken, afhandelen en ervan herstellen."
+          }
+        },
+        {
+          "key": "awareness",
+          "name": {
+            "en": "Security awareness",
+            "nl": "Security-awareness"
+          },
+          "description": {
+            "en": "How well people recognise and report threats.",
+            "nl": "Hoe goed medewerkers dreigingen herkennen en melden."
+          }
+        },
+        {
+          "key": "regulatory",
+          "name": {
+            "en": "Regulatory readiness",
+            "nl": "Gereedheid voor regelgeving"
+          },
+          "description": {
+            "en": "Awareness of and preparation for NIS2, the Cbw and GDPR.",
+            "nl": "Bewustzijn van en voorbereiding op NIS2, de Cbw en de AVG."
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nis2",
+      "sort": 2,
+      "name": {
+        "en": "NIS2 Readiness Assessment",
+        "nl": "NIS2-gereedheidsscan"
+      },
+      "summary": {
+        "en": "Check your readiness for NIS2 and the Dutch Cybersecurity Act (Cbw): governance, duty of care, incident reporting and supply chain.",
+        "nl": "Controleer uw gereedheid voor NIS2 en de Cyberbeveiligingswet (Cbw): governance, zorgplicht, incidentmelding en de keten."
+      },
+      "audience": {
+        "en": "Organisations in NIS2 sectors and suppliers to regulated organisations.",
+        "nl": "Organisaties in NIS2-sectoren en leveranciers van gereguleerde organisaties."
+      },
+      "evaluates": [
+        {
+          "en": "Management accountability",
+          "nl": "Bestuurlijke verantwoordelijkheid"
+        },
+        {
+          "en": "Risk management and duty of care",
+          "nl": "Risicobeheer en zorgplicht"
+        },
+        {
+          "en": "Incident reporting readiness",
+          "nl": "Gereedheid voor incidentmelding"
+        },
+        {
+          "en": "Supply-chain security",
+          "nl": "Ketenbeveiliging"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Free NIS2 Readiness Assessment",
+          "nl": "Gratis NIS2-gereedheidsscan"
+        },
+        "description": {
+          "en": "A preliminary self-assessment of your readiness for NIS2 and the Dutch Cybersecurity Act. Not a legal determination.",
+          "nl": "Een voorlopige zelfbeoordeling van uw gereedheid voor NIS2 en de Cyberbeveiligingswet. Geen juridische vaststelling."
+        }
+      },
+      "minutes": 6,
+      "questions": 28,
+      "categories": [
+        {
+          "key": "governance",
+          "name": {
+            "en": "Security governance",
+            "nl": "Beveiligingsgovernance"
+          },
+          "description": {
+            "en": "How cybersecurity is owned, planned and overseen.",
+            "nl": "Hoe cybersecurity is belegd, gepland en bewaakt."
+          }
+        },
+        {
+          "key": "identity",
+          "name": {
+            "en": "Identity and access",
+            "nl": "Identiteit en toegang"
+          },
+          "description": {
+            "en": "Who can log in to what, and how well accounts are protected.",
+            "nl": "Wie waar kan inloggen en hoe goed accounts zijn beschermd."
+          }
+        },
+        {
+          "key": "data",
+          "name": {
+            "en": "Data protection and resilience",
+            "nl": "Gegevensbescherming en veerkracht"
+          },
+          "description": {
+            "en": "Protecting important data and recovering when something goes wrong.",
+            "nl": "Belangrijke gegevens beschermen en herstellen als er iets misgaat."
+          }
+        },
+        {
+          "key": "incident",
+          "name": {
+            "en": "Incident response",
+            "nl": "Incidentrespons"
+          },
+          "description": {
+            "en": "Detecting, handling and recovering from security incidents.",
+            "nl": "Beveiligingsincidenten opmerken, afhandelen en ervan herstellen."
+          }
+        },
+        {
+          "key": "regulatory",
+          "name": {
+            "en": "Regulatory readiness",
+            "nl": "Gereedheid voor regelgeving"
+          },
+          "description": {
+            "en": "Awareness of and preparation for NIS2, the Cbw and GDPR.",
+            "nl": "Bewustzijn van en voorbereiding op NIS2, de Cbw en de AVG."
+          }
+        }
+      ]
+    },
+    {
+      "slug": "small-business",
+      "sort": 3,
+      "name": {
+        "en": "Small Business Cybersecurity Assessment",
+        "nl": "Cybersecurityscan voor kleine bedrijven"
+      },
+      "summary": {
+        "en": "A short check of the essential controls every small business should have, in about five minutes.",
+        "nl": "Een korte controle van de basismaatregelen die elk klein bedrijf zou moeten hebben, in ongeveer vijf minuten."
+      },
+      "audience": {
+        "en": "Businesses with fewer than 50 people, with or without an IT provider.",
+        "nl": "Bedrijven met minder dan 50 medewerkers, met of zonder IT-leverancier."
+      },
+      "evaluates": [
+        {
+          "en": "Accounts and passwords",
+          "nl": "Accounts en wachtwoorden"
+        },
+        {
+          "en": "Updates and device protection",
+          "nl": "Updates en apparaatbeveiliging"
+        },
+        {
+          "en": "Backups",
+          "nl": "Back-ups"
+        },
+        {
+          "en": "Staff awareness",
+          "nl": "Bewustzijn van medewerkers"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Free Small Business Cybersecurity Check",
+          "nl": "Gratis cybersecuritycheck voor kleine bedrijven"
+        },
+        "description": {
+          "en": "Check the essential security controls for small businesses in about five minutes.",
+          "nl": "Controleer in ongeveer vijf minuten de essentiële beveiligingsmaatregelen voor kleine bedrijven."
+        }
+      },
+      "minutes": 5,
+      "questions": 18,
+      "categories": [
+        {
+          "key": "governance",
+          "name": {
+            "en": "Security governance",
+            "nl": "Beveiligingsgovernance"
+          },
+          "description": {
+            "en": "How cybersecurity is owned, planned and overseen.",
+            "nl": "Hoe cybersecurity is belegd, gepland en bewaakt."
+          }
+        },
+        {
+          "key": "identity",
+          "name": {
+            "en": "Identity and access",
+            "nl": "Identiteit en toegang"
+          },
+          "description": {
+            "en": "Who can log in to what, and how well accounts are protected.",
+            "nl": "Wie waar kan inloggen en hoe goed accounts zijn beschermd."
+          }
+        },
+        {
+          "key": "infrastructure",
+          "name": {
+            "en": "Infrastructure and endpoints",
+            "nl": "Infrastructuur en endpoints"
+          },
+          "description": {
+            "en": "Devices, networks, cloud services and how they are kept secure.",
+            "nl": "Apparaten, netwerken, clouddiensten en hoe die veilig worden gehouden."
+          }
+        },
+        {
+          "key": "data",
+          "name": {
+            "en": "Data protection and resilience",
+            "nl": "Gegevensbescherming en veerkracht"
+          },
+          "description": {
+            "en": "Protecting important data and recovering when something goes wrong.",
+            "nl": "Belangrijke gegevens beschermen en herstellen als er iets misgaat."
+          }
+        },
+        {
+          "key": "incident",
+          "name": {
+            "en": "Incident response",
+            "nl": "Incidentrespons"
+          },
+          "description": {
+            "en": "Detecting, handling and recovering from security incidents.",
+            "nl": "Beveiligingsincidenten opmerken, afhandelen en ervan herstellen."
+          }
+        },
+        {
+          "key": "awareness",
+          "name": {
+            "en": "Security awareness",
+            "nl": "Security-awareness"
+          },
+          "description": {
+            "en": "How well people recognise and report threats.",
+            "nl": "Hoe goed medewerkers dreigingen herkennen en melden."
+          }
+        },
+        {
+          "key": "regulatory",
+          "name": {
+            "en": "Regulatory readiness",
+            "nl": "Gereedheid voor regelgeving"
+          },
+          "description": {
+            "en": "Awareness of and preparation for NIS2, the Cbw and GDPR.",
+            "nl": "Bewustzijn van en voorbereiding op NIS2, de Cbw en de AVG."
+          }
+        }
+      ]
+    },
+    {
+      "slug": "incident-response",
+      "sort": 4,
+      "name": {
+        "en": "Incident Response Readiness Assessment",
+        "nl": "Scan incidentresponsgereedheid"
+      },
+      "summary": {
+        "en": "How ready are you to detect, handle and recover from ransomware, data breaches or account compromise?",
+        "nl": "Hoe goed bent u voorbereid op het opmerken, afhandelen en herstellen van ransomware, datalekken of overgenomen accounts?"
+      },
+      "audience": {
+        "en": "Organisations that want to know whether their response and recovery would hold up.",
+        "nl": "Organisaties die willen weten of hun respons en herstel standhouden."
+      },
+      "evaluates": [
+        {
+          "en": "Response planning",
+          "nl": "Responsplanning"
+        },
+        {
+          "en": "Detection and escalation",
+          "nl": "Detectie en escalatie"
+        },
+        {
+          "en": "Backup and recovery",
+          "nl": "Back-up en herstel"
+        },
+        {
+          "en": "Reporting obligations",
+          "nl": "Meldplichten"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Free Incident Response Readiness Assessment",
+          "nl": "Gratis scan incidentresponsgereedheid"
+        },
+        "description": {
+          "en": "Assess how prepared your organisation is to respond to and recover from a cyber incident.",
+          "nl": "Beoordeel hoe goed uw organisatie is voorbereid om op een cyberincident te reageren en ervan te herstellen."
+        }
+      },
+      "minutes": 5,
+      "questions": 21,
+      "categories": [
+        {
+          "key": "data",
+          "name": {
+            "en": "Data protection and resilience",
+            "nl": "Gegevensbescherming en veerkracht"
+          },
+          "description": {
+            "en": "Protecting important data and recovering when something goes wrong.",
+            "nl": "Belangrijke gegevens beschermen en herstellen als er iets misgaat."
+          }
+        },
+        {
+          "key": "incident",
+          "name": {
+            "en": "Incident response",
+            "nl": "Incidentrespons"
+          },
+          "description": {
+            "en": "Detecting, handling and recovering from security incidents.",
+            "nl": "Beveiligingsincidenten opmerken, afhandelen en ervan herstellen."
+          }
+        },
+        {
+          "key": "awareness",
+          "name": {
+            "en": "Security awareness",
+            "nl": "Security-awareness"
+          },
+          "description": {
+            "en": "How well people recognise and report threats.",
+            "nl": "Hoe goed medewerkers dreigingen herkennen en melden."
+          }
+        },
+        {
+          "key": "regulatory",
+          "name": {
+            "en": "Regulatory readiness",
+            "nl": "Gereedheid voor regelgeving"
+          },
+          "description": {
+            "en": "Awareness of and preparation for NIS2, the Cbw and GDPR.",
+            "nl": "Bewustzijn van en voorbereiding op NIS2, de Cbw en de AVG."
+          }
+        }
+      ]
+    },
+    {
+      "slug": "governance-vciso",
+      "sort": 5,
+      "name": {
+        "en": "Cybersecurity Governance and vCISO Readiness Assessment",
+        "nl": "Scan cybersecuritygovernance en vCISO-gereedheid"
+      },
+      "summary": {
+        "en": "Is cybersecurity owned, planned and overseen at the right level, and would part-time senior leadership help?",
+        "nl": "Is cybersecurity op het juiste niveau belegd, gepland en bewaakt, en zou parttime senior leiderschap helpen?"
+      },
+      "audience": {
+        "en": "Directors and owners of growing organisations without a dedicated security leader.",
+        "nl": "Directeuren en eigenaren van groeiende organisaties zonder eigen securityverantwoordelijke."
+      },
+      "evaluates": [
+        {
+          "en": "Ownership and accountability",
+          "nl": "Eigenaarschap en verantwoordelijkheid"
+        },
+        {
+          "en": "Planning and budget",
+          "nl": "Planning en budget"
+        },
+        {
+          "en": "Board oversight and reporting",
+          "nl": "Bestuurlijk toezicht en rapportage"
+        },
+        {
+          "en": "Third-party governance",
+          "nl": "Governance van derden"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Free Cybersecurity Governance and vCISO Assessment",
+          "nl": "Gratis scan cybersecuritygovernance en vCISO"
+        },
+        "description": {
+          "en": "Assess how cybersecurity is governed in your organisation and whether Virtual CISO support would help.",
+          "nl": "Beoordeel hoe cybersecurity in uw organisatie is geregeld en of ondersteuning door een virtuele CISO zou helpen."
+        }
+      },
+      "minutes": 5,
+      "questions": 19,
+      "categories": [
+        {
+          "key": "governance",
+          "name": {
+            "en": "Security governance",
+            "nl": "Beveiligingsgovernance"
+          },
+          "description": {
+            "en": "How cybersecurity is owned, planned and overseen.",
+            "nl": "Hoe cybersecurity is belegd, gepland en bewaakt."
+          }
+        },
+        {
+          "key": "awareness",
+          "name": {
+            "en": "Security awareness",
+            "nl": "Security-awareness"
+          },
+          "description": {
+            "en": "How well people recognise and report threats.",
+            "nl": "Hoe goed medewerkers dreigingen herkennen en melden."
+          }
+        },
+        {
+          "key": "regulatory",
+          "name": {
+            "en": "Regulatory readiness",
+            "nl": "Gereedheid voor regelgeving"
+          },
+          "description": {
+            "en": "Awareness of and preparation for NIS2, the Cbw and GDPR.",
+            "nl": "Bewustzijn van en voorbereiding op NIS2, de Cbw en de AVG."
+          }
+        }
+      ]
+    }
+  ],
+  "thresholds": [
+    {
+      "min": 0,
+      "key": "initial",
+      "label": {
+        "en": "Initial",
+        "nl": "Initieel"
+      }
+    },
+    {
+      "min": 25,
+      "key": "developing",
+      "label": {
+        "en": "Developing",
+        "nl": "In ontwikkeling"
+      }
+    },
+    {
+      "min": 50,
+      "key": "established",
+      "label": {
+        "en": "Established",
+        "nl": "Gevestigd"
+      }
+    },
+    {
+      "min": 75,
+      "key": "advanced",
+      "label": {
+        "en": "Advanced",
+        "nl": "Gevorderd"
+      }
+    },
+    {
+      "min": 90,
+      "key": "highly_mature",
+      "label": {
+        "en": "Highly mature",
+        "nl": "Zeer volwassen"
+      }
+    }
+  ]
+}

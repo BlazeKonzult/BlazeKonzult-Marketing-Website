@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Manrope, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
-import CookieBanner from "@/components/CookieBanner";
+import SiteChrome from "@/components/SiteChrome";
 import JsonLd from "@/components/JsonLd";
-import { companyInfo } from "@/lib/data";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -20,43 +16,47 @@ const inter = Inter({
   display: "swap",
 });
 
-// PLACEHOLDER: update siteUrl to the production domain before launch.
-const siteUrl = "https://www.blazekonzult.example";
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "BlazeKonzult | Cybersecurity Services for Dutch SMEs",
-    template: "%s | BlazeKonzult",
-  },
-  description:
-    "BlazeKonzult provides practical cybersecurity guidance for Dutch SMEs — health checks, NIS2 readiness, virtual CISO support, awareness training and incident response readiness.",
-  keywords: [
-    "cybersecurity services Netherlands",
-    "cybersecurity for SMEs Netherlands",
-    "NIS2 readiness Netherlands",
-    "virtual CISO Netherlands",
-    "cybersecurity health check",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "en_NL",
-    siteName: "BlazeKonzult",
-    title: "BlazeKonzult | Cybersecurity Services for Dutch SMEs",
-    description: "Clear advice. Practical action. Stronger resilience.",
-  },
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+import { siteUrl } from "@/lib/site";
+import { getCatalog } from "@/content/catalog";
+import { SiteDataProvider } from "@/components/SiteData";
+import { getBasePath } from "@/lib/locale-server";
+import { localizeHref } from "@/lib/locale";
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+// Content is edited in the admin and read from the database on each request.
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { site, locale } = await getCatalog();
+  const seo = site.seo;
+  const path = await getBasePath();
+  return {
+    alternates: { canonical: localizeHref(path, locale), languages: { en: path, nl: localizeHref(path, "nl"), "x-default": path } },
+    metadataBase: new URL(siteUrl),
+    title: { default: seo.defaultTitle, template: `%s | ${seo.titleSuffix}` },
+    description: seo.description,
+    keywords: seo.keywords.split(",").map((k) => k.trim()).filter(Boolean),
+    openGraph: {
+      type: "website", locale: locale === "nl" ? "nl_NL" : "en_NL", siteName: site.company.name, title: seo.defaultTitle, description: site.company.tagline,
+      ...(seo.socialImage ? { images: [{ url: seo.socialImage }] } : {}),
+    },
+  };
+}
+
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const catalog = await getCatalog();
+  const companyInfo = catalog.site.company;
   const professionalServiceJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "BlazeKonzult",
-    description:
-      "Practical cybersecurity consulting for Dutch SMEs, including health checks, NIS2 readiness, virtual CISO support, awareness training and incident response readiness.",
+    name: companyInfo.name,
+    description: catalog.site.seo.description,
     url: siteUrl,
     areaServed: "NL",
     founder: {
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       name: companyInfo.founder,
       jobTitle: "Founder",
     },
-    // PLACEHOLDER: add real address, telephone and email once available
+    sameAs: [companyInfo.linkedin],
     address: {
       "@type": "PostalAddress",
       addressCountry: "NL",
@@ -72,14 +72,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   };
 
   return (
-    <html lang="en">
-      <body className={`${manrope.variable} ${inter.variable} antialiased bg-bg-offwhite text-text-dark`}>
+    <html lang={catalog.locale} suppressHydrationWarning>
+      <body className={`${manrope.variable} ${inter.variable} ${jetbrains.variable} antialiased`}>
         <JsonLd data={professionalServiceJsonLd} />
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <StickyCTA />
-        <CookieBanner />
+        <SiteDataProvider data={catalog}>
+          <SiteChrome>{children}</SiteChrome>
+        </SiteDataProvider>
       </body>
     </html>
   );

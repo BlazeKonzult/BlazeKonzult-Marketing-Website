@@ -1,0 +1,1634 @@
+[
+  {
+    "name": "overview",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "analytics",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "activity",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "notifications",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "leads",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "lead-detail",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "pipeline",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "follow-ups",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "assessments",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "assessment-detail",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "reports",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "assessment-analytics",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "templates",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "template-builder",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "questions",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "rules",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "pages",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "page-editor",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "articles",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "article-editor",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "media",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "seo",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "redirects",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "localization",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "users",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "roles",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "security",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "audit",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "emails",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "settings",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "privacy",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "health",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "guide",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "account",
+    "theme": "light",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "overview",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "analytics",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "activity",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "notifications",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "leads",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "lead-detail",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pipeline",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "follow-ups",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessments",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-detail",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "reports",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-analytics",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "templates",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "template-builder",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "questions",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "rules",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pages",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "page-editor",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "articles",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "article-editor",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "media",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "seo",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "redirects",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "localization",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "users",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "roles",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "security",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "audit",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "emails",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "settings",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "privacy",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "health",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "guide",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "account",
+    "theme": "light",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "overview",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "analytics",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "activity",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "notifications",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "leads",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "lead-detail",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pipeline",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "follow-ups",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessments",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-detail",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "reports",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-analytics",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "templates",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "template-builder",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "questions",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "rules",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pages",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "page-editor",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "articles",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "article-editor",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "media",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "seo",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "redirects",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "localization",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "users",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "roles",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "security",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "audit",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "emails",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "settings",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "privacy",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "health",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "guide",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "account",
+    "theme": "light",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "overview",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "analytics",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "activity",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "notifications",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "leads",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "lead-detail",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "pipeline",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "follow-ups",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "assessments",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "assessment-detail",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "reports",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "assessment-analytics",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "templates",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "template-builder",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "questions",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "rules",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "pages",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "page-editor",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "articles",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "article-editor",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "media",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "seo",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "redirects",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "localization",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "users",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "roles",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "security",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "audit",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "emails",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "settings",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "privacy",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "health",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "guide",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "account",
+    "theme": "dark",
+    "w": 1440,
+    "overflow": 0,
+    "errors": [],
+    "axe": []
+  },
+  {
+    "name": "overview",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "analytics",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "activity",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "notifications",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "leads",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "lead-detail",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pipeline",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "follow-ups",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessments",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-detail",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "reports",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-analytics",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "templates",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "template-builder",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "questions",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "rules",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pages",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "page-editor",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "articles",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "article-editor",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "media",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "seo",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "redirects",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "localization",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "users",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "roles",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "security",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "audit",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "emails",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "settings",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "privacy",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "health",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "guide",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "account",
+    "theme": "dark",
+    "w": 768,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "overview",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "analytics",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "activity",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "notifications",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "leads",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "lead-detail",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pipeline",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "follow-ups",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessments",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-detail",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "reports",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "assessment-analytics",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "templates",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "template-builder",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "questions",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "rules",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "pages",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "page-editor",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "articles",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "article-editor",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "media",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "seo",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "redirects",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "localization",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "users",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "roles",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "security",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "audit",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "emails",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "settings",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "privacy",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "health",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "guide",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  },
+  {
+    "name": "account",
+    "theme": "dark",
+    "w": 390,
+    "overflow": 0,
+    "errors": [],
+    "axe": null
+  }
+]

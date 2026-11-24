@@ -1,40 +1,46 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { alternates } from "@/lib/seo";
+import Link from "@/components/LocalLink";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
-import Button from "@/components/Button";
-import SectionHeading from "@/components/SectionHeading";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import PageHero from "@/components/PageHero";
+import CtaBand from "@/components/CtaBand";
+import SectionIntro from "@/components/SectionIntro";
 import ArticleCard from "@/components/ArticleCard";
 import JsonLd from "@/components/JsonLd";
-import { articles } from "@/lib/data";
+import RichText from "@/components/RichText";
+import CoverImage from "@/components/CoverImage";
+import { siteUrl } from "@/lib/site";
+import { getArticle, getArticles, getDoc } from "@/content/server";
+import type { ResourcesDoc } from "@/content/defaults";
+import { getUi } from "@/content/catalog";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticle(slug);
   if (!article) return {};
   return {
-    title: article.title,
-    description: article.excerpt,
-    alternates: { canonical: `/resources/${article.slug}` },
+    title: article.seo?.title || article.title,
+    description: article.seo?.description || article.excerpt,
+    alternates: await alternates(`/resources/${article.slug}`),
+    openGraph: { type: "article", title: article.seo?.title || article.title, description: article.seo?.description || article.excerpt, ...(article.coverImage ? { images: [{ url: article.coverImage }] } : {}) },
   };
 }
 
 export default async function ArticlePage({ params }: Props) {
+  const t = await getUi();
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const [article, articles, page] = await Promise.all([getArticle(slug), getArticles(), getDoc<ResourcesDoc>("page:resources")]);
   if (!article) notFound();
-
+  const L = page.article;
   const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
-  const formattedDate = new Date(article.date).toLocaleDateString("en-GB", {
+  const formattedDate = new Date(article.date).toLocaleDateString(t.dateLocale, {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "UTC",
   });
 
   const articleJsonLd = {
@@ -43,7 +49,7 @@ export default async function ArticlePage({ params }: Props) {
     headline: article.title,
     description: article.excerpt,
     datePublished: article.date,
-    author: { "@type": "Person", name: "Adeiza Johnson Yisa" },
+    author: { "@type": "Person", name: article.author },
     publisher: { "@type": "Organization", name: "BlazeKonzult" },
   };
 
@@ -51,8 +57,8 @@ export default async function ArticlePage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Resources", item: "/resources" },
-      { "@type": "ListItem", position: 2, name: article.title, item: `/resources/${article.slug}` },
+      { "@type": "ListItem", position: 1, name: "Resources", item: `${siteUrl}/resources/` },
+      { "@type": "ListItem", position: 2, name: article.title, item: `${siteUrl}/resources/${article.slug}/` },
     ],
   };
 
@@ -61,50 +67,63 @@ export default async function ArticlePage({ params }: Props) {
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
 
-      <section className="gradient-purple-soft border-b border-light-lavender">
-        <div className="container-page py-16 sm:py-20 max-w-3xl">
-          <Link href="/resources" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-purple hover:text-deep-purple mb-6">
-            <ArrowLeft size={16} aria-hidden="true" />
-            Back to Resources
-          </Link>
-          <p className="text-sm font-semibold text-primary-purple uppercase tracking-wide mb-3">{article.category}</p>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-deep-purple leading-tight">{article.title}</h1>
-          <div className="flex items-center gap-5 mt-5 text-sm text-text-secondary">
-            <span className="flex items-center gap-1.5"><Calendar size={14} aria-hidden="true" /> {formattedDate}</span>
-            <span className="flex items-center gap-1.5"><Clock size={14} aria-hidden="true" /> {article.readTime}</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        breadcrumbs={[{ label: t.home, href: "/" }, { label: t.insights, href: "/resources" }, { label: article.category }]}
+        eyebrow={article.category}
+        title={article.title}
+      >
+        <p className="t-mono text-sm text-ink-300">
+          {formattedDate} · {article.readTime}{article.author ? ` · ${t.artBy} ${article.author}` : ""}
+        </p>
+      </PageHero>
 
-      <article className="py-16 sm:py-20">
-        <div className="container-page max-w-3xl prose-content">
-          {/* PLACEHOLDER: replace with the full article body content */}
-          <p className="text-lg text-text-secondary leading-relaxed">{article.excerpt}</p>
-          <p className="mt-6 text-text-secondary leading-relaxed">
-            This is placeholder article content. The full, published version of this article will
-            replace this text — covering practical, non-technical guidance in line with
-            BlazeKonzult&apos;s calm, business-focused approach to cybersecurity.
-          </p>
-          <div className="mt-10 bg-light-lavender rounded-2xl p-6">
-            <p className="font-semibold text-deep-purple mb-2">Want tailored guidance for your organisation?</p>
-            <p className="text-sm text-text-secondary mb-4">
-              A Cybersecurity Health Check gives you a clear view of your priority risks and a practical plan.
-            </p>
-            <Button href="/contact" size="md">Book a Free Discovery Call</Button>
+      <article className="section bg-paper">
+        <div className="container-page grid gap-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16">
+          <div className="prose-bk max-w-[44rem] text-body text-[1.0625rem] leading-[1.75]">
+            {article.coverImage && <CoverImage article={article} className="aspect-[16/9] rounded-[var(--radius-md)] !mt-0 mb-8" />}
+            {!article.translated && t.artEnglishOnly && <p lang="nl" className="!mt-0 mb-6 rounded-[var(--radius-sm)] border border-line bg-white px-4 py-3 text-sm text-muted">{t.artEnglishOnly}</p>}
+            <p lang={article.translated ? undefined : "en"} className="t-lead text-heading !mt-0">{article.excerpt}</p>
+            {article.body.map((block, i) => {
+              if ("h" in block) return <h2 key={i}>{block.h}</h2>;
+              if ("ul" in block)
+                return (
+                  <ul key={i}>
+                    {block.ul.map((item, j) => (
+                      <RichText as="li" key={j} text={item} />
+                    ))}
+                  </ul>
+                );
+              return <RichText key={i} text={block.p} />;
+            })}
           </div>
+          <aside className="lg:sticky lg:top-28 lg:self-start space-y-6">
+            <div className="on-dark surface-dark rounded-[var(--radius-md)] p-6">
+              <p className="t-eyebrow text-brand-300">{L.nextStepLabel}</p>
+              <p className="mt-3 font-[family-name:var(--font-display)] text-lg font-semibold text-white leading-snug">{L.nextStepTitle}</p>
+              <p className="mt-2 text-sm text-ink-300">{L.nextStepText}</p>
+              <Link href={L.nextStepLink.href} className="arrow-link mt-5 text-sm text-white">
+                {L.nextStepLink.label} <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </div>
+            <Link href="/resources" className="arrow-link text-sm text-cobalt hover:text-brand">
+              <ArrowLeft size={15} aria-hidden="true" /> {L.backLabel}
+            </Link>
+          </aside>
         </div>
       </article>
 
-      <section className="py-16 sm:py-20 bg-white border-t border-light-lavender">
+      <section className="section bg-white border-t border-line">
         <div className="container-page">
-          <SectionHeading eyebrow="Continue reading" title="Related articles" />
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <SectionIntro eyebrow={L.relatedEyebrow} title={L.relatedTitle} />
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {related.map((a) => (
               <ArticleCard key={a.slug} article={a} />
             ))}
           </div>
         </div>
       </section>
+
+      <CtaBand title={L.closing.title} body={L.closing.body} primary={L.closing.primary} secondary={L.closing.secondary} />
     </>
   );
 }

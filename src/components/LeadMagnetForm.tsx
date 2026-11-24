@@ -2,6 +2,9 @@
 
 import { useState, type FormEvent } from "react";
 import { Download } from "lucide-react";
+import { submitForm } from "@/lib/submitForm";
+import Link from "@/components/LocalLink";
+import { useT } from "@/components/SiteData";
 
 type LeadMagnetFormProps = {
   resourceName: string;
@@ -10,39 +13,44 @@ type LeadMagnetFormProps = {
 };
 
 /**
- * Lead-magnet request form.
- * PLACEHOLDER: wire this up to a secure server-side endpoint (e.g. a Next.js
- * Route Handler or a form backend such as Formspree/HubSpot) that performs
- * server-side validation, rate limiting and spam protection before sending
- * the checklist PDF. Do not submit sensitive data via client-side code only.
+ * Lead-magnet request form. Submits to /contact.php, which emails the request
+ * to BlazeKonzult so the checklist can be sent to the visitor.
  */
-export default function LeadMagnetForm({ resourceName, buttonLabel = "Download the Free Checklist", compact = false }: LeadMagnetFormProps) {
+export default function LeadMagnetForm({ resourceName, buttonLabel = "Request the Free Checklist", compact = false }: LeadMagnetFormProps) {
+  const { t, locale } = useT();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // PLACEHOLDER: replace with real submission handler / API call.
-    setSubmitted(true);
+    const form = e.currentTarget;
+    if (!form.reportValidity()) return;
+    setSending(true);
+    setError(null);
+    const result = await submitForm(form, "checklist", { resource: resourceName, locale }, t);
+    setSending(false);
+    if (result.ok) setSubmitted(true);
+    else setError(result.error);
   }
 
   if (submitted) {
     return (
-      <div role="status" className="bg-white/95 rounded-2xl p-6 text-center">
-        <p className="font-semibold text-deep-purple">Thank you — check your inbox shortly.</p>
-        <p className="text-sm text-text-secondary mt-1">
-          {/* PLACEHOLDER: confirm the checklist PDF file is attached/linked in the automated email */}
-          We&apos;ll send the {resourceName} to the email address you provided.
+      <div role="status" className="bg-white border border-line rounded-[var(--radius-md)] p-6 text-center">
+        <p className="font-semibold text-heading">{t.lmThanks}</p>
+        <p className="text-sm text-body mt-1">
+          {t.lmThanksText(resourceName)}
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`bg-white/95 rounded-2xl p-6 ${compact ? "" : "sm:p-8"}`} noValidate>
+    <form onSubmit={handleSubmit} className={`bg-white border border-line rounded-[var(--radius-md)] shadow-[var(--shadow-raised)] p-6 ${compact ? "" : "sm:p-8"}`} noValidate>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor={`name-${resourceName}`} className="block text-sm font-medium text-text-dark mb-1.5">
-            Name
+          <label htmlFor={`name-${resourceName}`} className="field-label">
+            {t.fName}
           </label>
           <input
             id={`name-${resourceName}`}
@@ -50,12 +58,12 @@ export default function LeadMagnetForm({ resourceName, buttonLabel = "Download t
             type="text"
             required
             autoComplete="name"
-            className="w-full rounded-lg border border-light-lavender px-4 py-2.5 text-sm min-h-11 focus:border-primary-purple outline-none"
+            className="field"
           />
         </div>
         <div>
-          <label htmlFor={`company-${resourceName}`} className="block text-sm font-medium text-text-dark mb-1.5">
-            Company
+          <label htmlFor={`company-${resourceName}`} className="field-label">
+            {t.fCompany}
           </label>
           <input
             id={`company-${resourceName}`}
@@ -63,13 +71,13 @@ export default function LeadMagnetForm({ resourceName, buttonLabel = "Download t
             type="text"
             required
             autoComplete="organization"
-            className="w-full rounded-lg border border-light-lavender px-4 py-2.5 text-sm min-h-11 focus:border-primary-purple outline-none"
+            className="field"
           />
         </div>
       </div>
       <div className="mt-4">
-        <label htmlFor={`email-${resourceName}`} className="block text-sm font-medium text-text-dark mb-1.5">
-          Business email
+        <label htmlFor={`email-${resourceName}`} className="field-label">
+          {t.fEmail}
         </label>
         <input
           id={`email-${resourceName}`}
@@ -77,8 +85,12 @@ export default function LeadMagnetForm({ resourceName, buttonLabel = "Download t
           type="email"
           required
           autoComplete="email"
-          className="w-full rounded-lg border border-light-lavender px-4 py-2.5 text-sm min-h-11 focus:border-primary-purple outline-none"
+          className="field"
         />
+      </div>
+      {/* Honeypot field for basic spam protection — kept hidden from real users */}
+      <div className="hidden" aria-hidden="true">
+        <input name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
       <div className="mt-4 flex items-start gap-3">
         <input
@@ -86,22 +98,23 @@ export default function LeadMagnetForm({ resourceName, buttonLabel = "Download t
           name="consent"
           type="checkbox"
           required
-          className="mt-1 w-5 h-5 rounded border-light-lavender text-primary-purple focus:ring-2 focus:ring-primary-purple"
+          className="check"
         />
-        <label htmlFor={`consent-${resourceName}`} className="text-xs text-text-secondary leading-relaxed">
-          I agree to receive this resource and occasional cybersecurity guidance from BlazeKonzult by email. See our{" "}
-          <a href="/privacy-policy" className="underline hover:text-primary-purple">
-            Privacy Policy
-          </a>
-          . You can unsubscribe at any time.
+        <label htmlFor={`consent-${resourceName}`} className="text-xs text-muted leading-relaxed">
+          {t.lmConsent}{" "}
+          <Link href="/privacy-policy" className="link">{t.fPrivacy}</Link>. {t.lmUnsub}
         </label>
       </div>
+      {error && (
+        <p role="alert" className="form-error mt-4">{error}</p>
+      )}
       <button
         type="submit"
-        className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary-purple text-white font-semibold px-6 py-3 min-h-12 hover:bg-deep-purple transition-colors"
+        disabled={sending}
+        className="btn-submit mt-5 w-full"
       >
         <Download size={18} aria-hidden="true" />
-        {buttonLabel}
+        {sending ? t.fSending : buttonLabel}
       </button>
     </form>
   );

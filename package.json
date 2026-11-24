@@ -3,25 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "node server.js --dev",
+    "build": "next build --webpack && npm --prefix backend run build",
+    "build:web": "next build --webpack",
+    "start": "node server.js",
+    "lint": "eslint",
+    "migrate": "node backend/dist/cli.js migrate",
+    "seed": "node backend/dist/cli.js seed",
+    "create-owner": "node backend/dist/cli.js create-owner",
+    "cron": "node backend/dist/cron.js"
   },
   "dependencies": {
+    "express": "4.22.3",
     "lucide-react": "^1.28.0",
+    "mysql2": "3.24.6",
     "next": "16.3.0",
+    "nodemailer": "6.10.1",
+    "pdfkit": "0.15.2",
+    "qrcode": "^1.5.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "server-only": "0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9"
   }
 }
