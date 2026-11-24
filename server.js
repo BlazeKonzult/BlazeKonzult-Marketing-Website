@@ -22,6 +22,7 @@ const handle = site.getRequestHandler();
 // Start serving straight away; database setup runs alongside so a slow or unreachable
 // database can never stop the site from starting. Setup is idempotent: it updates the schema,
 // installs starter content on a new database and creates the first owner from BK_* variables.
+console.log(`[blazekonzult] email: ${cfg.mail.driver === "smtp" && cfg.mail.smtp ? `smtp via ${cfg.mail.smtp.host}:${cfg.mail.smtp.port} (secure=${cfg.mail.smtp.secure}) as ${cfg.mail.smtp.user || "(no user)"}, from ${cfg.mail.from}` : cfg.mail.driver === "smtp" ? "smtp selected but SMTP_HOST is missing, so sendmail is used" : cfg.mail.driver}`);
 console.log(`[blazekonzult] database: ${cfg.db.user || "(no user)"}@${cfg.db.host}:${cfg.db.port}/${cfg.db.name || "(no name)"}`);
 require("./backend/dist/bootstrap").bootstrap((m) => console.log(`[blazekonzult] ${m}`))
   .catch((e) => console.error(`[blazekonzult] database setup failed: ${e.code ?? ""} ${e.message}`));
