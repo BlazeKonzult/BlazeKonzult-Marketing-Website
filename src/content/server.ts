@@ -15,7 +15,7 @@ type DbCfg = { host: string; port: number; database: string; user: string; passw
 function dbConfig(): DbCfg | null {
   if (process.env.BK_DB_JSON) { try { return JSON.parse(process.env.BK_DB_JSON); } catch { /* fall through */ } }
   if (!process.env.DB_NAME) return null;
-  return { host: process.env.DB_HOST ?? "127.0.0.1", port: Number(process.env.DB_PORT ?? 3306), database: process.env.DB_NAME, user: process.env.DB_USER ?? "", password: process.env.DB_PASS ?? "" };
+  return { host: process.env.DB_HOST ?? "127.0.0.1", port: Number(process.env.DB_PORT ?? 3306), database: process.env.DB_NAME, user: process.env.DB_USER ?? "", password: process.env.DB_PASSWORD ?? process.env.DB_PASS ?? "" };
 }
 
 const g = globalThis as unknown as { __bkPool?: mysql.Pool | null; __bkCache?: { version: string; docs: Map<string, unknown> }; __bkWarned?: boolean };

@@ -52,7 +52,7 @@ export function loadConfig(): Config {
     siteUrl: (get('SITE_URL', 'https://blazekonzult.nl') as string).replace(/\/$/, ''),
     db: {
       host: get('DB_HOST', 'localhost')!, port: Number(get('DB_PORT', '3306')), name: get('DB_NAME', '')!,
-      user: get('DB_USER', '')!, pass: get('DB_PASS', '')!, connectionLimit: Number(get('DB_POOL', '5')),
+      user: get('DB_USER', '')!, pass: get('DB_PASSWORD', get('DB_PASS', ''))!, connectionLimit: Number(get('DB_POOL', '5')),
     },
     appKey: key('APP_KEY', get('APP_KEY'), env),
     indexKey: key('INDEX_KEY', get('INDEX_KEY'), env),
